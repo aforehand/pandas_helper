@@ -14,7 +14,7 @@ def select_bool_features(df, target, bool_cols=None, p=0.01):
         group_b = target[df[col]==False]
         pvalues.append(stats.ttest_ind(group_a, group_b, equal_var=False).pvalue)
     significance_df = pd.DataFrame({'feature': bool_cols, 'pvalue': pvalues})
-    significance_df = significance_df[significance_df.pvalue<=p]
+    significance_df = significance_df[significance_df.pvalue <= p]
     return significance_df.feature.tolist()
 
 def select_numeric_features(df, target, num_cols=None, r=0.3):
