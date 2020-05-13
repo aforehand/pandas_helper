@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from scipy.stats import pearsonr
+from scipy import stats
 
 
 # returns a list of features with significantly different
@@ -22,7 +22,7 @@ def select_numeric_features(df, target, num_cols=None, r=0.3):
     if num_cols is None:
         num_cols = df.select_dtypes(include=[np.float, np.int]).columns.tolist()
     for col in num_cols:
-        correlations.append(pearsonr(df[col], target)[0])
+        correlations.append(stats.pearsonr(df[col], target)[0])
     corr_df = pd.DataFrame({'feature': num_cols, 'correlation': correlations})
     corr_df.sort_values(by='correlation', ascending=False, inplace=True)
     corr_df.reset_index(drop=True, inplace=True)
