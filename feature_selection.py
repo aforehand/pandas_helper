@@ -26,5 +26,5 @@ def select_numeric_features(df, target, num_cols=None, r=0.3):
     corr_df = pd.DataFrame({'feature': num_cols, 'correlation': correlations})
     corr_df.sort_values(by='correlation', ascending=False, inplace=True)
     corr_df.reset_index(drop=True, inplace=True)
-    corr_df = corr_df[abs(corr_df.correlation) >=r]
+    corr_df = corr_df[abs(corr_df.correlation) >= r]
     return corr_df.feature.tolist()
